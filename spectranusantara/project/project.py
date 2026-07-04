@@ -7,7 +7,6 @@ loaded into SpectraNusantara.
 
 
 class Project:
-
     def __init__(self):
 
         self.name = "Untitled Project"

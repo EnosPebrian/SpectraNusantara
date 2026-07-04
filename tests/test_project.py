@@ -7,3 +7,6 @@ def test_create_project():
     assert project.name == "Untitled Project"
     assert len(project.rasters) == 0
     assert len(project.targets) == 0
+
+
+test_create_project()

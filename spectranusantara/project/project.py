@@ -5,24 +5,19 @@ A Project is the top-level container for everything
 loaded into SpectraNusantara.
 """
 
+from dataclasses import dataclass, field
 
+from spectranusantara.models.sample import Sample
+
+
+@dataclass
 class Project:
-    def __init__(self):
+    name: str = "Untitled Project"
 
-        self.name = "Untitled Project"
+    samples: list[Sample] = field(default_factory=list)
 
-        self.rasters = []
+    assets: list = field(default_factory=list)
 
-        self.targets = []
+    products: list = field(default_factory=list)
 
-        self.spectral_libraries = []
-
-        self.history = []
-
-    def __repr__(self):
-
-        return (
-            f"<Project '{self.name}' | "
-            f"{len(self.rasters)} rasters | "
-            f"{len(self.targets)} targets>"
-        )
+    history: list = field(default_factory=list)

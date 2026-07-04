@@ -1,16 +1,17 @@
-import sys
-
 from PySide6.QtWidgets import QApplication
-from PySide6.QtWidgets import QMainWindow
+
+from explorer.gui.main_window import MainWindow
 
 
-class MainWindow(QMainWindow):
+class Application:
     def __init__(self):
 
-        super().__init__()
+        self.app = QApplication([])
 
-        self.setWindowTitle("SpectraNusantara")
+        self.window = MainWindow()
 
-        self.resize(1600, 900)
+    def run(self):
 
-        self.statusBar().showMessage("Ready")
+        self.window.show()
+
+        self.app.exec()

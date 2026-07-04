@@ -1,12 +1,10 @@
-from spectranusantara.project import Project
+from spectranusantara.models.sample import Sample
 
 
-def test_create_project():
-    project = Project()
+def test_create_sample():
 
-    assert project.name == "Untitled Project"
-    assert len(project.rasters) == 0
-    assert len(project.targets) == 0
+    sample = Sample()
 
+    assert sample.name == "Untitled Sample"
 
-test_create_project()
+    assert sample.easting is None

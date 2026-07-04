@@ -1,16 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
-
 name = "spectranusantara"
-
 version = "0.1.0-dev"
-
 description = "Open-source exploration spectroscopy platform"
-
 authors = [
-    {name="Enos Pebrian"}
+    { name = "Enos Pebrian" }
 ]
-
 requires-python = ">=3.12"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["spectranusantara*"]
 
 [tool.ruff]
 line-length = 88

@@ -1,12 +1,12 @@
-import sys
+from explorer.app import Application
 
-from PySide6.QtWidgets import QApplication
-from explorer.app import MainWindow
 
-app = QApplication(sys.argv)
+def main():
 
-window = MainWindow()
+    app = Application()
 
-window.show()
+    app.run()
 
-sys.exit(app.exec())
+
+if __name__ == "__main__":
+    main()

@@ -2,24 +2,13 @@
 
 > Born in Indonesia. Built for exploration geologists everywhere.
 
-SpectraNusantara is an open-source desktop platform for exploration geology, integrating:
+SpectraNusantara is an open-source exploration platform that integrates:
 
-- Satellite remote sensing (ASTER, Sentinel-2, PRISMA, EMIT)
-- Field spectroscopy (ASD / TerraSpec)
-- Spectral libraries
-- Geological targets
-- Exploration workflows
+• Satellite remote sensing
+• Field spectroscopy
+• Geological interpretation
+• Exploration workflows
 
-Current Status
+into a single desktop application.
 
-🚧 Early Development
-
-Roadmap
-
-- [ ] ASTER Viewer
-- [ ] Interactive Spectrum Viewer
-- [ ] ASD Reader
-- [ ] Spectral Library
-- [ ] Band Ratios
-- [ ] PCA / Crosta
-- [ ] Spectral Matching
+Our mission is to provide a modern, extensible alternative to proprietary exploration software while remaining scientifically rigorous, reproducible, and community-driven.

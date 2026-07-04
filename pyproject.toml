@@ -1,0 +1,13 @@
+[project]
+
+name = "spectranusantara"
+
+version = "0.1.0-dev"
+
+description = "Open-source exploration spectroscopy platform"
+
+authors = [
+    {name="Enos Pebrian"}
+]
+
+requires-python = ">=3.12"

@@ -1,0 +1,16 @@
+name: spectranusantara
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.12
+  - numpy
+  - matplotlib
+  - rasterio
+  - geopandas
+  - scipy
+  - scikit-learn
+  - pyside6
+  - jupyter
+  - pip

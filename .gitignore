@@ -3,6 +3,8 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.pytest_cache/
+.ruff_cache/
 
 # Virtual environments
 .venv/
@@ -11,12 +13,14 @@ ENV/
 
 # Conda
 .conda/
+.env
+.venv
 
 # Jupyter
 .ipynb_checkpoints/
 
-# VS Code
-.vscode/
+# # VS Code
+# .vscode/
 
 # Build
 build/

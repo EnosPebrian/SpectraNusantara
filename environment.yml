@@ -14,3 +14,6 @@ dependencies:
   - pyside6
   - jupyter
   - pip
+  - pip:
+    - ruff
+    - -e

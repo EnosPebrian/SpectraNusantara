@@ -39,6 +39,8 @@ class MainWindow(QMainWindow):
 
         self.project = Project()
 
+        self.current_pixel = None
+
         self.raster_controller = RasterController(self, self.project)
 
         self.menu.action_open_raster.triggered.connect(
@@ -66,15 +68,28 @@ class MainWindow(QMainWindow):
             sample_dock,
         )
 
-        self.canvas.pixelSelected.connect(
-            lambda pixel: self.sample_panel.display(
-                self.canvas.dataset,
-                pixel,
-            )
-        )
+        self.canvas.pixelSelected.connect(self.on_pixel_selected)
 
         self.canvas.pixelSelected.connect(self.sample_manager.add_sample)
+
+        self.toolbar.action_save_sample.triggered.connect(self.save_current_sample)
 
     def on_mouse_move(self, row, col):
 
         self.statusBar().showMessage(f"Row: {row}   Col: {col}")
+
+    def on_pixel_selected(self, pixel):
+
+        self.current_pixel = pixel
+
+        self.sample_panel.display(
+            self.canvas.dataset,
+            pixel,
+        )
+
+    def save_current_sample(self):
+
+        if self.current_pixel is None:
+            return
+
+        print("Save sample")

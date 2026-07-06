@@ -4,6 +4,9 @@ from PySide6.QtWidgets import (
     QListWidget,
 )
 
+from spectranusantara.sample import sample
+from spectranusantara.sample.sample import Sample
+
 
 class SampleManager(QWidget):
     def __init__(self):
@@ -16,6 +19,6 @@ class SampleManager(QWidget):
 
         layout.addWidget(self.list)
 
-    def add_sample(self, pixel):
+    def add_sample(self, sample: Sample):
 
-        self.list.addItem(f"Sample ({pixel.row}, {pixel.col})")
+        self.list.addItem(sample.name)

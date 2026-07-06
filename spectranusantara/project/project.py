@@ -16,7 +16,7 @@ class Project:
 
     samples: list[Sample] = field(default_factory=list)
 
-    assets: list = field(default_factory=list)
+    rasters: list = field(default_factory=list)
 
     products: list = field(default_factory=list)
 

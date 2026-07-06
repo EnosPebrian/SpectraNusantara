@@ -1,4 +1,11 @@
 from PySide6.QtWidgets import QMainWindow
+from explorer.gui.map_canvas import MapCanvas
+from spectranusantara.project import Project
+from explorer.gui.menu_bar import MenuBar
+from explorer.controllers.raster_controller import RasterController
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QDockWidget
+from explorer.gui.sample_panel import SamplePanel
 
 
 class MainWindow(QMainWindow):
@@ -15,3 +22,40 @@ class MainWindow(QMainWindow):
         self.resize(1600, 900)
 
         self.statusBar().showMessage("Ready")
+
+        self.canvas = MapCanvas()
+
+        self.setCentralWidget(self.canvas)
+
+        self.menu = MenuBar(self)
+
+        self.setMenuBar(self.menu)
+
+        self.project = Project()
+
+        self.raster_controller = RasterController(self, self.project)
+
+        self.menu.action_open_raster.triggered.connect(
+            self.raster_controller.open_raster
+        )
+
+        self.canvas.mouseMoved.connect(self.on_mouse_move)
+
+        self.sample_panel = SamplePanel()
+
+        dock = QDockWidget("Sample")
+
+        dock.setWidget(self.sample_panel)
+
+        self.addDockWidget(Qt.BottomDockWidgetArea, dock)
+
+        self.canvas.pixelSelected.connect(
+            lambda pixel: self.sample_panel.display(
+                self.canvas.dataset,
+                pixel,
+            )
+        )
+
+    def on_mouse_move(self, row, col):
+
+        self.statusBar().showMessage(f"Row: {row}   Col: {col}")

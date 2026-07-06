@@ -1,18 +1,35 @@
-from PySide6.QtWidgets import QWidget, QLabel, QHBoxLayout
+from PySide6.QtWidgets import (
+    QWidget,
+    QLabel,
+    QVBoxLayout,
+    QHBoxLayout,
+)
 
 
 class SampleHeader(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.label = QLabel("No sample selected")
+        self.dataset_label = QLabel()
 
-        layout = QHBoxLayout(self)
-        layout.addWidget(self.label)
-        layout.addStretch()
+        self.location_label = QLabel()
+
+        top = QHBoxLayout()
+        top.addWidget(self.dataset_label)
+        top.addStretch()
+
+        bottom = QHBoxLayout()
+        bottom.addWidget(self.location_label)
+        bottom.addStretch()
+
+        layout = QVBoxLayout(self)
+        layout.addLayout(top)
+        layout.addLayout(bottom)
 
     def display(self, dataset, pixel):
 
-        text = f"{dataset.sensor.name}   |   Row: {pixel.row}   Col: {pixel.col}"
+        self.dataset_label.setText(
+            f"Dataset: {dataset.name}    Sensor: {dataset.sensor.name}"
+        )
 
-        self.label.setText(text)
+        self.location_label.setText(f"Row: {pixel.row}    Column: {pixel.col}")

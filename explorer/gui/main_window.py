@@ -8,6 +8,7 @@ from PySide6.QtWidgets import QDockWidget
 from explorer.gui.sample_panel import SamplePanel
 from explorer.gui.sample_manager import SampleManager
 from explorer.gui.tool_bar import ToolBar
+from spectranusantara.sample.sample import Sample
 
 
 class MainWindow(QMainWindow):
@@ -92,4 +93,9 @@ class MainWindow(QMainWindow):
         if self.current_pixel is None:
             return
 
-        print("Save sample")
+        sample = Sample(
+            name=f"Sample {self.sample_manager.list.count() + 1}",
+            pixel=self.current_pixel,
+        )
+
+        self.sample_manager.add_sample(sample)

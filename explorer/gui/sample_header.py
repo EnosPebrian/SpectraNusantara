@@ -32,4 +32,4 @@ class SampleHeader(QWidget):
             f"Dataset: {dataset.name}    Sensor: {dataset.sensor.name}"
         )
 
-        self.location_label.setText(f"Row: {pixel.row}    Column: {pixel.col}")
+        self.location_label.setText(f"X: {pixel.x:,.2f}    Y: {pixel.y:,.2f}")

@@ -6,6 +6,7 @@ from explorer.controllers.raster_controller import RasterController
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QDockWidget
 from explorer.gui.sample_panel import SamplePanel
+from explorer.gui.sample_manager import SampleManager
 
 
 class MainWindow(QMainWindow):
@@ -43,11 +44,22 @@ class MainWindow(QMainWindow):
 
         self.sample_panel = SamplePanel()
 
+        self.sample_manager = SampleManager()
+
         dock = QDockWidget("Sample")
 
         dock.setWidget(self.sample_panel)
 
         self.addDockWidget(Qt.BottomDockWidgetArea, dock)
+
+        sample_dock = QDockWidget("Samples")
+
+        sample_dock.setWidget(self.sample_manager)
+
+        self.addDockWidget(
+            Qt.LeftDockWidgetArea,
+            sample_dock,
+        )
 
         self.canvas.pixelSelected.connect(
             lambda pixel: self.sample_panel.display(

@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from .pixel import Pixel
 from spectranusantara.sensors.sensor import Sensor
+from rasterio.transform import xy   
 
 import numpy as np
 
@@ -80,6 +81,12 @@ class RasterDataset:
             raise ValueError(f"Column {col} outside raster.")
 
         values = self.data[:, row, col]
+        
+        x, y = xy(
+            self.transform,
+            row,
+            col,
+        )
 
         return Pixel(
             row=row,

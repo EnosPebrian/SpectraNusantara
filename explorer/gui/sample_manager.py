@@ -15,3 +15,7 @@ class SampleManager(QWidget):
         layout = QVBoxLayout(self)
 
         layout.addWidget(self.list)
+
+    def add_sample(self, pixel):
+
+        self.list.addItem(f"Sample ({pixel.row}, {pixel.col})")

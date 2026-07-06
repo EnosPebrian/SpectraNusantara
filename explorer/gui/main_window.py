@@ -7,6 +7,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QDockWidget
 from explorer.gui.sample_panel import SamplePanel
 from explorer.gui.sample_manager import SampleManager
+from explorer.gui.tool_bar import ToolBar
 
 
 class MainWindow(QMainWindow):
@@ -31,6 +32,10 @@ class MainWindow(QMainWindow):
         self.menu = MenuBar(self)
 
         self.setMenuBar(self.menu)
+
+        self.toolbar = ToolBar()
+
+        self.addToolBar(self.toolbar)
 
         self.project = Project()
 
@@ -67,6 +72,8 @@ class MainWindow(QMainWindow):
                 pixel,
             )
         )
+
+        self.canvas.pixelSelected.connect(self.sample_manager.add_sample)
 
     def on_mouse_move(self, row, col):
 

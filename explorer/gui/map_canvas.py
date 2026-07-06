@@ -20,6 +20,8 @@ class MapCanvas(FigureCanvasQTAgg):
 
         self.ax = self.figure.add_subplot(111)
 
+        self.selection_marker = None
+
         self.dataset = None
 
         self.mpl_connect("motion_notify_event", self.on_mouse_move)
@@ -87,6 +89,7 @@ class MapCanvas(FigureCanvasQTAgg):
         col = int(round(event.xdata))
 
         pixel = self.dataset.pixel(row, col)
+        self.show_selection(row, col)
 
         if self.marker is not None:
             self.marker.remove()
@@ -102,3 +105,17 @@ class MapCanvas(FigureCanvasQTAgg):
         self.draw_idle()
 
         self.pixelSelected.emit(pixel)
+
+    def show_selection(self, row: int, col: int):
+
+        if self.selection_marker is not None:
+            self.selection_marker.remove()
+
+        self.selection_marker = self.ax.scatter(
+            col,
+            row,
+            marker="+",
+            s=150,
+        )
+
+        self.draw_idle()

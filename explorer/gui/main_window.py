@@ -103,4 +103,14 @@ class MainWindow(QMainWindow):
 
     def on_sample_activated(self, sample):
 
-        print(sample.name)
+        self.current_pixel = sample.pixel
+
+        self.sample_panel.display(
+            self.canvas.dataset,
+            sample.pixel,
+        )
+
+        self.canvas.show_selection(
+            sample.pixel.row,
+            sample.pixel.col,
+        )

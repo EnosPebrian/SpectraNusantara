@@ -15,9 +15,14 @@ class SpectrumCanvas(FigureCanvasQTAgg):
 
         self.ax.set_ylabel("Value")
 
-    def display(self, dataset, pixel):
-
-        self.ax.clear()
+    def display(
+        self,
+        dataset,
+        pixel,
+        append=False,
+    ):
+        if not append:
+            self.ax.clear()
 
         self.ax.plot(
             dataset.wavelengths,

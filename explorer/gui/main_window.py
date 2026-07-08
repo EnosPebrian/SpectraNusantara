@@ -8,6 +8,7 @@ from PySide6.QtWidgets import QDockWidget
 from explorer.gui.sample_panel import SamplePanel
 from explorer.gui.project_explorer import ProjectExplorer
 from explorer.gui.tool_bar import ToolBar
+from spectranusantara.sample import sample
 from spectranusantara.sample.sample import Sample
 
 
@@ -73,6 +74,8 @@ class MainWindow(QMainWindow):
 
         self.sample_panel.markRequested.connect(self.mark_current_sample)
 
+        self.project_explorer.sampleActivated.connect(self.on_sample_activated)
+
     def on_mouse_move(self, row, col):
 
         self.statusBar().showMessage(f"Row: {row}   Col: {col}")
@@ -97,3 +100,7 @@ class MainWindow(QMainWindow):
         )
 
         self.project_explorer.add_sample(marked_sample)
+
+    def on_sample_activated(self, sample):
+
+        print(sample.name)

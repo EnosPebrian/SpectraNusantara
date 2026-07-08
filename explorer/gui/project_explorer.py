@@ -6,15 +6,18 @@ from PySide6.QtWidgets import (
 from PySide6.QtWidgets import QTreeWidgetItem
 from spectranusantara.sample import sample
 from spectranusantara.sample.sample import Sample
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Signal
 
 
 class ProjectExplorer(QWidget):
+    sampleActivated = Signal(object)
+
     def __init__(self):
 
         super().__init__()
 
         self.tree = QTreeWidget()
+
         self.tree.setHeaderHidden(True)
 
         self.rasters_item = QTreeWidgetItem(["Rasters"])
@@ -24,6 +27,8 @@ class ProjectExplorer(QWidget):
         self.tree.addTopLevelItem(self.rasters_item)
 
         self.tree.addTopLevelItem(self.samples_item)
+
+        self.tree.itemDoubleClicked.connect(self.on_item_double_clicked)
 
         layout = QVBoxLayout(self)
 
@@ -45,3 +50,15 @@ class ProjectExplorer(QWidget):
 
     def sample_count(self) -> int:
         return self.samples_item.childCount()
+
+    def on_item_double_clicked(self, item):
+
+        sample = item.data(
+            0,
+            Qt.UserRole,
+        )
+
+        if sample is None:
+            return
+
+        self.sampleActivated.emit(sample)

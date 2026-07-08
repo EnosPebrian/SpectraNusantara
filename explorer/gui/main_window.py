@@ -6,7 +6,7 @@ from explorer.controllers.raster_controller import RasterController
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QDockWidget
 from explorer.gui.sample_panel import SamplePanel
-from explorer.gui.sample_manager import SampleManager
+from explorer.gui.project_explorer import ProjectExplorer
 from explorer.gui.tool_bar import ToolBar
 from spectranusantara.sample.sample import Sample
 
@@ -52,7 +52,7 @@ class MainWindow(QMainWindow):
 
         self.sample_panel = SamplePanel()
 
-        self.sample_manager = SampleManager()
+        self.project_explorer = ProjectExplorer()
 
         dock = QDockWidget("Sample")
 
@@ -62,7 +62,7 @@ class MainWindow(QMainWindow):
 
         sample_dock = QDockWidget("Samples")
 
-        sample_dock.setWidget(self.sample_manager)
+        sample_dock.setWidget(self.project_explorer)
 
         self.addDockWidget(
             Qt.LeftDockWidgetArea,
@@ -70,8 +70,6 @@ class MainWindow(QMainWindow):
         )
 
         self.canvas.pixelSelected.connect(self.on_pixel_selected)
-
-        self.canvas.pixelSelected.connect(self.sample_manager.add_sample)
 
         self.toolbar.action_save_sample.triggered.connect(self.save_current_sample)
 
@@ -94,8 +92,8 @@ class MainWindow(QMainWindow):
             return
 
         sample = Sample(
-            name=f"Sample {self.sample_manager.list.count() + 1}",
+            name=f"Sample {self.project_explorer.sample_count() + 1}",
             pixel=self.current_pixel,
         )
 
-        self.sample_manager.add_sample(sample)
+        self.project_explorer.add_sample(sample)

@@ -71,7 +71,7 @@ class MainWindow(QMainWindow):
 
         self.canvas.pixelSelected.connect(self.on_pixel_selected)
 
-        self.toolbar.action_save_sample.triggered.connect(self.save_current_sample)
+        self.sample_panel.markRequested.connect(self.mark_current_sample)
 
     def on_mouse_move(self, row, col):
 
@@ -86,14 +86,14 @@ class MainWindow(QMainWindow):
             pixel,
         )
 
-    def save_current_sample(self):
+    def mark_current_sample(self):
 
         if self.current_pixel is None:
             return
 
-        sample = Sample(
+        marked_sample = Sample(
             name=f"Sample {self.project_explorer.sample_count() + 1}",
             pixel=self.current_pixel,
         )
 
-        self.project_explorer.add_sample(sample)
+        self.project_explorer.add_sample(marked_sample)

@@ -6,6 +6,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtWidgets import QTreeWidgetItem
 from spectranusantara.sample import sample
 from spectranusantara.sample.sample import Sample
+from PySide6.QtCore import Qt
 
 
 class ProjectExplorer(QWidget):
@@ -31,6 +32,12 @@ class ProjectExplorer(QWidget):
     def add_sample(self, sample: Sample):
 
         item = QTreeWidgetItem([sample.name])
+
+        item.setData(
+            0,
+            Qt.UserRole,
+            sample,
+        )
 
         self.samples_item.addChild(item)
 

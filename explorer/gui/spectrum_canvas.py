@@ -1,6 +1,8 @@
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
+from spectranusantara.raster import dataset, pixel
+
 
 class SpectrumCanvas(FigureCanvasQTAgg):
     def __init__(self):
@@ -47,3 +49,14 @@ class SpectrumCanvas(FigureCanvasQTAgg):
         self.ax.grid(True)
 
         self.draw()
+
+    def overlay(
+        self,
+        dataset,
+        pixel,
+    ):
+        self.display(
+            dataset,
+            pixel,
+            append=True,
+        )
